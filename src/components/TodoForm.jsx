@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
-import {addTodo} from "../store/slices/todosSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {updateTodosList} from "../store/slices/todosSlice";
 import styled from "styled-components";
+import {getStorage, setStorage, TODOS_LIST} from "../storage/storage";
 
 const Form = styled.form`
   display: flex;
@@ -14,6 +15,7 @@ const Form = styled.form`
 `
 
 export const TodoForm = () => {
+    const {todos} = useSelector(state => state.todo)
     const [title,setTitle] = useState('')
     const [subTitle,setSubTitle] = useState('')
     const dispatch = useDispatch()
@@ -30,7 +32,9 @@ export const TodoForm = () => {
             title,
             body: subTitle,
         }
-        dispatch(addTodo(todo))
+        const newTodosList = [todo, ...todos]
+        setStorage(newTodosList, TODOS_LIST)
+        dispatch(updateTodosList(getStorage(TODOS_LIST)))
         setTitle('')
         setSubTitle('')
     }

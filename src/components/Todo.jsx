@@ -2,8 +2,9 @@ import React from 'react';
 import styled from "styled-components";
 import deleteIcon from '../svg/close.svg'
 import {Link} from "react-router-dom";
-import {useDispatch, } from "react-redux";
-import {deleteTodo, moveToBasket} from "../store/slices/todosSlice";
+import {useDispatch, useSelector,} from "react-redux";
+import { updateTodosBasket, updateTodosList} from "../store/slices/todosSlice";
+import {getStorage, setStorage, TODOS_BASKET, TODOS_LIST} from "../storage/storage";
 
 
 const TodoWrapper = styled.div`
@@ -52,10 +53,26 @@ const LinkStyled = styled(Link)`
 
 
 export const Todo = ({todo, isBasketPage}) => {
+    const {todos, idTodosBasket} = useSelector(state => state.todo)
     const todoShortSubtitle = todo.body.length > 50
         ? todo.body.substr(0, 50)+'...'
         :  todo.body
     const dispatch = useDispatch()
+
+    function deleteHandler() {
+        if (isBasketPage){
+            const newTodosList = todos.filter(t => t.id !== todo.id)
+            const newTodosBasket = idTodosBasket.filter(t => t !== todo.id)
+            setStorage(newTodosList, TODOS_LIST)
+            setStorage(newTodosBasket, TODOS_BASKET)
+            dispatch(updateTodosList(getStorage(TODOS_LIST)))
+            dispatch(updateTodosBasket(getStorage(TODOS_BASKET)))
+        }else{
+            const newTodosBasket = [todo.id, ...idTodosBasket]
+            setStorage(newTodosBasket, TODOS_BASKET)
+            dispatch(updateTodosBasket(getStorage(TODOS_BASKET)))
+        }
+    }
 
     return (
         <TodoWrapper>
@@ -69,7 +86,7 @@ export const Todo = ({todo, isBasketPage}) => {
                     </TodoSubtitle>
                 </TodoInfo>
             </LinkStyled>
-            <Del onClick={() => dispatch(isBasketPage? deleteTodo(todo.id) : moveToBasket(todo.id))}>
+            <Del onClick={deleteHandler}>
                 <Img src={deleteIcon} alt=""/>
             </Del>
         </TodoWrapper>
