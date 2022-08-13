@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {fetchTodos} from "./store/actioncreators/fetchTodos";
 import '@csstools/normalize.css';
 import styled from "styled-components";
-import {Route, BrowserRouter, Routes} from "react-router-dom";
+import {Route, Routes, HashRouter} from "react-router-dom";
 import {TodosPage} from "./pages/TodosPage/TodosPage";
 import {TodoPage} from "./pages/TodoPage/TodoPage";
 import {BasketPage} from "./pages/BasketPage/BasketPage";
@@ -32,14 +32,14 @@ function App() {
     return (
         <AppWrapper>
             <Title>Todos app</Title>
-            <BrowserRouter>
+            <HashRouter>
                 <Basket/>
                 <Routes>
                     <Route path="/" element={<TodosPage/>}/>
                     <Route path="/todos/:id" element={<TodoPage/>}/>
                     <Route path="/basket" element={<BasketPage/>}/>
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </AppWrapper>
 
     );
