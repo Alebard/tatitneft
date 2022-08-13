@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/tatitneft/static/css/main.2f5e7175.css",
-    "main.js": "/tatitneft/static/js/main.9d56b2cd.js",
+    "main.js": "/tatitneft/static/js/main.1570780a.js",
     "static/media/basket.svg": "/tatitneft/static/media/basket.061cceedd8160e29f24385b8a7b3304f.svg",
     "index.html": "/tatitneft/index.html",
     "static/media/close.svg": "/tatitneft/static/media/close.caf335e378d84254605843308d5cf185.svg",
     "main.2f5e7175.css.map": "/tatitneft/static/css/main.2f5e7175.css.map",
-    "main.9d56b2cd.js.map": "/tatitneft/static/js/main.9d56b2cd.js.map"
+    "main.1570780a.js.map": "/tatitneft/static/js/main.1570780a.js.map"
   },
   "entrypoints": [
     "static/css/main.2f5e7175.css",
-    "static/js/main.9d56b2cd.js"
+    "static/js/main.1570780a.js"
   ]
 }
