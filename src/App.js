@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from "react-redux";
 import '@csstools/normalize.css';
 import styled from "styled-components";
 import {Route, Routes, HashRouter} from "react-router-dom";
@@ -24,10 +23,6 @@ const Title = styled.div`
 
 
 function App() {
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-    }, [])
 
     return (
         <AppWrapper>
@@ -41,7 +36,6 @@ function App() {
                 </Routes>
             </HashRouter>
         </AppWrapper>
-
     );
 }
 
